@@ -1,0 +1,86 @@
+sudo aot update
+sudo apt install vim
+sudo apt install zsh git -y
+sudo apt install curl
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+vim ~/.zshrc
+
+修改plugins
+plugins=(
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+
+source ~/.zshrc
+
+sudo sh -c '. /etc/lsb-release && echo "deb http://mirrors.ustc.edu.cn/ros/ubuntu/ $DISTRIB_CODENAME main" > /etc/apt/sources.list.d/ros-latest.list'
+
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+
+sudo apt update
+
+sudo apt install ros-noetic-desktop-full
+
+sudo apt install python3-pip
+sudo pip3 install rosdepc
+sudo rosdepc init
+rosdepc update
+
+echo "source /opt/ros/noetic/setup.zsh" >> ~/.zshrc
+source ~/.zshrc
+
+sudo apt install python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+新窗口
+roscore
+
+测试小乌龟
+rosrun turtlesim turtlesim_node
+
+rosrun turtlesim turtle_teleop_key
+
+测试完成
+code apt-cache show libpcl-dev | grep Version
+预期输出1.10.0.。。
+code pkg-config --modversion eigen3
+3.3.7
+pkg-config --modversion opencv4
+4.2.0
+
+
+git clone https://github.com/strasdat/Sophus.git
+
+cd Sophus
+
+git checkout a621ff
+
+
+vim sophus/so2.cpp
+修改
+unit_complex_.real(1.0);
+unit_complex_.imag(0.);
+
+退出
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+
+
+clear
+cd ..
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/src
+git clone https://github.com/xuankuzcr/rpg_vikit.git
+
+git clone https://github.com/hku-mars/FAST-LIVO2
+
+cd ..
+catkin_make
+
+source devel/setup.zsh
+roslaunch fast_livo mapping_avia.launch
+rosbag play Bright_Screen_Wall.bag
