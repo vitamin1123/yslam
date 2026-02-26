@@ -42,9 +42,9 @@ rosrun turtlesim turtlesim_node
 rosrun turtlesim turtle_teleop_key
 
 测试完成
-code apt-cache show libpcl-dev | grep Version
+apt-cache show libpcl-dev | grep Version
 预期输出1.10.0.。。
-code pkg-config --modversion eigen3
+pkg-config --modversion eigen3
 3.3.7
 pkg-config --modversion opencv4
 4.2.0
